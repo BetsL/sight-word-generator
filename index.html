@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Read ALL the Sight Words!</title>
+	<meta charset="UTF-8">
+</head>
+<body>
+
+<div id="dolch"></div>
+<button id="ver">Read!</button>
+
+<br><br>
+
+<div id="words"></div>
+<button id="read">Go!</button>
+
+<script>
+
+// test 2
+
+// array will store the available words ...
+// obj w/arrays for each list/group
+var sightWords = ['am', 'at', 'can', 'go', 'is', 'me', 'my', 'see', 'the', 'to', 'up', 'we'];
+
+function generateWords(){
+
+	// populate the available words ...
+	for(var i=0; i<=11; i++){
+		sightWords.push(i);
+	}
+}
+
+function spin(){
+	if(sightWords.length==0){
+		// used up all available words ... start new game or whatever
+		alert('starting again');
+		generateWords();
+	}
+	// select an index randomly based on the number of remaining available words
+	var rand = Math.floor(Math.random()*sightWords.length);
+	var word = sightWords[rand];
+	sightWords.splice(rand,1); // remove the word we select so it can't be used next time ...
+	document.getElementById('words').innerHTML = word;
+}
+
+document.getElementById('read').onclick = spin;
+
+
+// test 1
+
+document.getElementById('ver').onclick = function(){
+
+	var sightWords = ['go', 'red', 'Mary', 'dress', 'today'];
+
+	var randomSightWord = sightWords[Math.floor(sightWords.length * Math.random())];
+
+	document.getElementById('dolch').innerHTML = randomSightWord;
+};
+
+
+</script>
+</body>
+</html>
