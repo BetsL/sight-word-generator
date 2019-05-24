@@ -1,63 +1,173 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Read ALL the Sight Words!</title>
+	<title></title>
 	<meta charset="UTF-8">
 </head>
 <body>
 
-<div id="dolch"></div>
-<button id="ver">Read!</button>
+<style>
+    /*
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    */
 
-<br><br>
 
-<div id="words"></div>
-<button id="read">Go!</button>
+    body {
+      font-family: 'Helvetica', sans-serif;
+    }
+
+
+    #sneaky {
+      /*border-bottom: 1px solid black;
+      border-top: 1px solid black;*/
+      padding: 20px;
+    }
+
+    #sneaky span {
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .container {
+      border: 1px solid black;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-flow: column wrap;
+      margin: 20px;
+      padding: 50px;
+      text-align: center;
+    }
+
+    .wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-flow: row wrap;
+    }
+
+    #hexagon {
+    	background-color: black;
+    	color: white;
+    	/*border-radius: 50%;*/
+    	display: flex;
+    	justify-content: center;
+    	align-items: center;
+    	/*height: 400px;*/
+    	text-align: center;
+    	/*width: 400px;*/
+    	font-size: 32px;
+    }
+
+    #hexagon {
+      position: relative;
+      width: 300px;
+      height: 173.21px;
+      background-color: #000;
+      margin: 86.60px 0;
+    }
+
+    #hexagon:before,
+    #hexagon:after {
+      content: "";
+      position: absolute;
+      width: 0;
+      border-left: 150px solid transparent;
+      border-right: 150px solid transparent;
+    }
+
+    #hexagon:before {
+      bottom: 100%;
+      border-bottom: 86.60px solid #000;
+    }
+
+    #hexagon:after {
+      top: 100%;
+      width: 0;
+      border-top: 86.60px solid #000;
+    }
+
+    #hexagon p {
+    	display: flex;
+    	justify-content: center;
+    	align-items: center;
+      flex-flow: row wrap;
+    	font-size: 32px;
+    	font-family: 'Helvetica', sans-serif;
+    	text-align: center;
+    }
+
+    #start,
+    #stop {
+      background-color: #fff;
+      border: 1px solid black;
+      border-radius: 8px;
+      font-size: 20px;
+      margin: 50px 10px;
+      outline-style: none;
+      padding: 11px;
+    }
+
+</style>
+
+
+
+<div class="container">
+
+    <div id="sneaky" style="display: none;">Go, <span>Stinger</span>, Go!</div>
+
+    <br><br>
+
+    <div class="wrapper">
+        <div id="hexagon"><p>I heart <br>sight words <br>like major!<p></div>
+        <button id="start">start</button>
+        <button id="stop">stop</button>
+    </div>
+
+</div>
+
 
 <script>
 
-// test 2
+setTimeout( function(){
+  document.getElementById('sneaky').style.display = 'block';}, 5000 );
 
-// array will store the available words ...
-// obj w/arrays for each list/group
-var sightWords = ['am', 'at', 'can', 'go', 'is', 'me', 'my', 'see', 'the', 'to', 'up', 'we'];
+var els = document.querySelectorAll('#hexagon'),
+	words = ['am', 'at', 'can', 'go', 'is', 'me', 'my', 'see', 'the', 'to', 'up', 'we'],
+	ms = 1500,
+	interval;
 
-function generateWords(){
-
-	// populate the available words ...
-	for(var i=0; i<=11; i++){
-		sightWords.push(i);
-	}
+function start(els, words, ms){
+	var i = 0;
+	interval = setInterval(function(){
+		[].forEach.call(els, function(el){
+			el.innerHTML = words[i];
+		})
+		i += 1;
+		i === words.length ? i = 0 : false;
+	}, ms);
 }
 
-function spin(){
-	if(sightWords.length==0){
-		// used up all available words ... start new game or whatever
-		alert('starting again');
-		generateWords();
-	}
-	// select an index randomly based on the number of remaining available words
-	var rand = Math.floor(Math.random()*sightWords.length);
-	var word = sightWords[rand];
-	sightWords.splice(rand,1); // remove the word we select so it can't be used next time ...
-	document.getElementById('words').innerHTML = word;
+function stop(){
+	clearInterval(interval);
 }
 
-document.getElementById('read').onclick = spin;
+var x = document.getElementById('start');
+var y = document.getElementById('stop');
 
+x.addEventListener('click', function(){
+	start(els, words, ms);
+  x.style.backgroundColor = 'green';
+})
 
-// test 1
-
-document.getElementById('ver').onclick = function(){
-
-	var sightWords = ['go', 'red', 'Mary', 'dress', 'today'];
-
-	var randomSightWord = sightWords[Math.floor(sightWords.length * Math.random())];
-
-	document.getElementById('dolch').innerHTML = randomSightWord;
-};
+y.addEventListener('click', function(){
+	stop();
+  y.style.backgroundColor = 'red';
+});
 
 
 </script>
-</body>
-</html>
