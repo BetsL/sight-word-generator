@@ -1,0 +1,98 @@
+/* ---------- GENERAL ---------- */
+
+body {
+  font-family: 'Helvetica', sans-serif;
+}
+
+/* ---------- MESSAGE ---------- */
+
+#sneaky {
+  padding: 20px;
+}
+
+#sneaky span {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+/* ---------- HEXAGON/DISPLAY ---------- */
+
+.container {
+  border: 1px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column wrap;
+  margin: 35px;
+  padding: 20px;
+  text-align: center;
+}
+
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: row wrap;
+  padding: 20px;
+}
+
+#hexagon {
+  background-color: black;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 32px;
+}
+
+#hexagon {
+  position: relative;
+  width: 300px;
+  height: 173.21px;
+  background-color: #000;
+  margin: 86.60px 0;
+}
+
+#hexagon:before,
+#hexagon:after {
+  content: "";
+  position: absolute;
+  width: 0;
+  border-left: 150px solid transparent;
+  border-right: 150px solid transparent;
+}
+
+#hexagon:before {
+  bottom: 100%;
+  border-bottom: 86.60px solid #000;
+}
+
+#hexagon:after {
+  top: 100%;
+  width: 0;
+  border-top: 86.60px solid #000;
+}
+
+#hexagon p {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: row wrap;
+  font-size: 32px;
+  font-family: 'Helvetica', sans-serif;
+  text-align: center;
+}
+
+/* ---------- BUTTONS ---------- */
+
+#start,
+#stop {
+  background-color: #fff;
+  border: 1px solid black;
+  border-radius: 8px;
+  font-size: 20px;
+  margin: 50px 10px;
+  outline-style: none;
+  padding: 11px;
+}
